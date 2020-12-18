@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-sm-4">
+    <%= render "layouts/sidebar", book_new: @book_new, user: @book.user %>
+  </div>
+  <div class="col-sm-8">
+    <h2>Book detail</h2>
+    <table class="table">
+      <th class="col-sm-2">Image<br><%= @book.user.name %<</th>
+      <td class="col-sm-5"><%= @book.title %></td>
+      <td class="col-sm-5"><%= @book.opinion %></td>
+    </table>
+  </div>
+</div>

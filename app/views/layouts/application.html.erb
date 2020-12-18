@@ -10,24 +10,26 @@
   </head>
 
   <body>
-    <header>
-      <%= render "layouts/header" %>
-      <div class="flash-message">
-        <% if notice.present? %>
-          <p class="notice"><%= notice %></p>
-        <% end %>
-        <% if alert.present? %>
-          <p class="alert"><%= alert %></p>
-        <% end %>
-      </div>
-    </header>
-
-    <main>
-      <%= yield %>
-
-    </main>
-    <footer>
-      
-    </footer>
+    <div class="container-fluid">
+      <header>
+        <%= render "layouts/header" %>
+        <div class="flash-message">
+          <% if notice.present? %>
+            <p class="notice"><%= notice %></p>
+          <% end %>
+          <% if alert.present? %>
+            <p class="alert"><%= alert %></p>
+          <% end %>
+        </div>
+      </header>
+    </div>
+    <div class="container">
+      <main>
+        <%= yield %>
+      </main>
+      <footer>
+        <p class="text-right">CopyRight Infratop.inc</p>
+      </footer>
+    </div>
   </body>
 </html>
