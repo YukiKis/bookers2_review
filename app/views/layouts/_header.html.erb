@@ -1,0 +1,15 @@
+<nav>
+  <ul class="nav-list">
+    <% if user_signed_in? %>
+      <li class="nav-list-item"><%= link_to "Home", root_path %></li>
+      <li class="nav-list-item">Users</li>
+      <li class="nav-list-item">Books</li>
+      <li class="nav-list-item"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>    
+    <% else %>
+      <li class="nav-list-item"><%= link_to "Home", root_path %></li>
+      <li class="nav-list-item"><%= link_to "About", about_path %></li>
+      <li class="nav-list-item"><%= link_to "sign up", new_user_registration_path %></li>
+      <li class="nav-list-item"><%= link_to "login", new_user_session_path %></li>
+    <% end %>
+  </ul>
+</nav>
