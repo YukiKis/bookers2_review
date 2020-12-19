@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
   belongs_to :user
   
-  validates :title, null: false
-  validates :opinion, null: false
+  validates :title, presence: true
+  validates :opinion, presence: true
 end

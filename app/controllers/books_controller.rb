@@ -18,7 +18,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to book_path(@book)
+      redirect_to book_path(@book), notice: "You successfully update!"
     else
       render :edit
     end
@@ -28,11 +28,17 @@ class BooksController < ApplicationController
     path = request.referer
     @book = current_user.books.new(book_params)
     if @book.save
-     redirect_to book_path(@book)
+     redirect_to book_path(@book), notice: "You successfully made!"
     else
       # need object depending on the pagegi
       render path
     end
+  end
+  
+  def destroy
+    book = Book.find(params[:id])
+    book.destroy
+    redirect_to books_path, notice: "You successfully deleted"
   end
   
   private

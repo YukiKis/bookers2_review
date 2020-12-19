@@ -10,7 +10,7 @@
       <td class="col-sm-4"><%= @book.opinion %></td>
       <% if @book.user == current_user %>
         <td class="col-sm-1"><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %></td>
-        <td class="col-sm-1"><%= link_to "Destroy", book_path(@book), class: "btn btn-danger", metohd: :delete %></td>
+        <td class="col-sm-1"><%= link_to "Destroy", book_path(@book), class: "btn btn-danger", method: :delete, data: { confirm: "You are sure?" } %></td>
       <% end %>
     </table>
   </div>

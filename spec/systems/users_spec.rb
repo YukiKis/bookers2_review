@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe User, type: :system do
-  let(:user){ create(:user) }  
-  let(:user2)[ create(:user2) ]
+  let!(:user){ create(:user) }  
+  let!(:user2){ create(:user2) }
   before do  
     visit new_user_session_path
     fill_in "user[name]", with: user.name
@@ -28,6 +28,7 @@ RSpec.describe User, type: :system do
       User.all.each do |u|
         expect(page).to have_link u.name, href: user_path(u)
       end
+    end
   end
   context "on Show page" do
     before do
@@ -56,7 +57,7 @@ RSpec.describe User, type: :system do
     end
     it "redirects to the user page if it is not current user" do
       visit edit_user_path(user2)
-      expect(current_path).to eq user_path(usre2)
+      expect(current_path).to eq user_path(user2)
     end
     it "has form for name" do
       expect(page).to have_field "user[name]", with: user.name
@@ -68,7 +69,7 @@ RSpec.describe User, type: :system do
       expect(page).to have_button "Update"
     end
     it "successfully updates" do
-      fill_in "user[name]", with "YUKIYUKI"
+      fill_in "user[name]", with: "YUKIYUKI"
       fill_in "user[introduction]", with: "Hello world!"
       click_button "Update"
       expect(current_path).to eq user_path(user)
@@ -76,7 +77,9 @@ RSpec.describe User, type: :system do
       expect(page).to have_content "Hello world!"
     end
     it "fails to update" do
+      fill_in "user[name]", with: ""
       click_button "Update"
-      expect(page).to have_
+      expect(page).to have_content "error"
+    end
   end
 end
