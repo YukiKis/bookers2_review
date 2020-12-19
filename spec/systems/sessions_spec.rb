@@ -2,12 +2,15 @@ require "rails_helper"
 
 RSpec.describe "user-session page", type: :system do
   describe "on new-user-session page" do
-    let(:user){ User.create(name: "yuki", email: "yuki@com", password: "testtest") }
+    let(:user){ create(:user) }
+    before do
+      visit new_user_session_path
+    end
     it "has field for name" do
-      expect(page).to have_field "uesr[name]"
+      expect(page).to have_field "user[name]"
     end
     it "has field for password" do
-      expect(page).to have_field "user[password"
+      expect(page).to have_field "user[password]"
     end
     it "successfully log in" do
       fill_in "user[name]", with: user.name
@@ -17,7 +20,7 @@ RSpec.describe "user-session page", type: :system do
     end
     it "fails to log in" do
       click_button "Login"
-      expect(page).to have_content "error"
+      expect(page).to have_content "Invalid"
     end
   end
 end

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-sm-4">
+    <%= render "layouts/sidebar", book_new: @book_new, user: @book.user %>
+  </div>
+  <div class="col-sm-8">
+    <h2>Book detail</h2>
+    <table class="table">
+      <th class="col-sm-2">Image<br><%= @book.user.name %></th>
+      <td class="col-sm-4"><%= @book.title %></td>
+      <td class="col-sm-4"><%= @book.opinion %></td>
+      <% if @book.user == current_user %>
+        <td class="col-sm-1"><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %></td>
+        <td class="col-sm-1"><%= link_to "Destroy", book_path(@book), class: "btn btn-danger", method: :delete, data: { confirm: "You are sure?" } %></td>
+      <% end %>
+    </table>
+  </div>
+</div>
