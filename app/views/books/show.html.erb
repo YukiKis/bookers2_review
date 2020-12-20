@@ -4,8 +4,8 @@
   </div>
   <div class="col-sm-8">
     <h2>Book detail</h2>
-    <table class="table">
-      <th class="col-sm-2">Image<br><%= @book.user.name %></th>
+    <table class="table books-table">
+      <th class="col-sm-2"><%= attachment_image_tag @book.user, :raimage, fallback: "noimage.jpg", class: "image-in-table" %><br><%= @book.user.name %></th>
       <td class="col-sm-4"><%= @book.title %></td>
       <td class="col-sm-4"><%= @book.opinion %></td>
       <% if @book.user == current_user %>

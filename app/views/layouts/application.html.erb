@@ -4,7 +4,7 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/6d2f46eeba.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -13,13 +13,17 @@
     <div class="container-fluid">
       <header>
         <%= render "layouts/header" %>
-        <div class="flash-message">
-          <% if notice.present? %>
-            <p class="notice"><%= notice %></p>
-          <% end %>
-          <% if alert.present? %>
-            <p class="alert"><%= alert %></p>
-          <% end %>
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset 2">
+            <div class="flash-message">
+              <% if notice.present? %>
+                <p class="notice"><%= notice %></p>
+              <% end %>
+              <% if alert.present? %>
+                <p class="alert"><%= alert %></p>
+              <% end %>
+            </div>
+          </div>
         </div>
       </header>
     </div>

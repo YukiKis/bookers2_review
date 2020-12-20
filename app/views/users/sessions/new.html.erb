@@ -2,12 +2,12 @@
 
 <%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
   <div class="form-group form-inline">
-    <%= f.label :name, class: "control-label" %>
+    <%= f.label :name, class: "control-label" %><br>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group form-inline">
-    <%= f.label :password %>
+    <%= f.label :password %><br>
     <%= f.password_field :password, autocomplete: false, class: "form-control" %>
   </div>
 

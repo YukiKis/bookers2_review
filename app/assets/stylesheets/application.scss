@@ -16,9 +16,40 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.image-box{
+  height: 150px;
+  text-align: center;
+  margin: 10px;
+  img{
+    width: 150px;
+    outline: 3px solid black;
+  }
+}
+
+
+.users-table, .books-table{
+  tr th, td{
+    vertical-align: middle !important;
+  }
+  .image-in-table{  
+    height: 40px;
+  }
+}
+
 .nav-list{
   display: flex;
+  justify-content: center;
+  background-color: black;
   .nav-list-item{
+    list-style-type: none;
     width: 200px;
+    padding: 15px;
+    a{
+      color: gray;
+      text-decoration: none;
+      &:hover{
+        color: white;
+      }
+    }
   }
 }

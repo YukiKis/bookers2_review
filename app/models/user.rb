@@ -7,4 +7,6 @@ class User < ApplicationRecord
   
   validates :name, length: { in: 2..20 }
   validates :email, presence: true
+  
+  attachment :image
 end

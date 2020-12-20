@@ -1,15 +1,47 @@
 <nav>
   <ul class="nav-list">
     <% if user_signed_in? %>
-      <li class="nav-list-item"><%= link_to "Home", root_path %></li>
-      <li class="nav-list-item"><%= link_to "Users", users_path %></li>
-      <li class="nav-list-item"><%= link_to "Books", books_path %></li>
-      <li class="nav-list-item"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>    
+      <li class="nav-list-item">
+        <%= link_to user_path(current_user) do %>
+          <i class="fas fa-home"></i>Home
+        <% end %>
+      </li>
+      <li class="nav-list-item">
+        <%= link_to users_path do %>
+          <i class="fas fa-user"></i>Users
+        <% end %>
+      </li>
+      <li class="nav-list-item">
+        <%= link_to books_path do %>
+          <i class="fas fa-book"></i>Books
+        <% end %>
+      </li>
+      <li class="nav-list-item">
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fas fa-sign-out-alt"></i>Logout
+        <% end %>
+      </li>    
     <% else %>
-      <li class="nav-list-item"><%= link_to "Home", root_path %></li>
-      <li class="nav-list-item"><%= link_to "About", about_path %></li>
-      <li class="nav-list-item"><%= link_to "sign up", new_user_registration_path %></li>
-      <li class="nav-list-item"><%= link_to "login", new_user_session_path %></li>
+      <li class="nav-list-item">
+        <%= link_to root_path do %>
+          <i class="fas fa-home"></i>Home
+        <% end %>
+      </li>      
+      <li class="nav-list-item">
+        <%= link_to about_path do %>
+          <i class="fas fa-link"></i>About
+        <% end %>
+      </li>
+      <li class="nav-list-item">
+        <%= link_to new_user_registration_path do %>
+          <i class="fas fa-user-plus"></i>Sign up
+        <% end %>
+      </li>
+      <li class="nav-list-item">
+        <%= link_to new_user_session_path do %>
+          <i class="fas fa-sign-in-alt"></i>Login
+        <% end %>
+      </li>
     <% end %>
   </ul>
 </nav>
