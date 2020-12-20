@@ -9,4 +9,5 @@ class User < ApplicationRecord
   validates :email, presence: true
   
   attachment :image
+  has_many :favorites
 end

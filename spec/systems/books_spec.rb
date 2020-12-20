@@ -48,6 +48,14 @@ RSpec.describe "books-page", type: :system do
       expect(page).to have_content book3.title
       expect(page).to have_content book3.opinion
     end
+    it "has button to make it favorite" do
+      expect(page).to have_selector "a[data-method=post]"
+    end
+    it "has button to remove favorite" do
+      book3.favorites.create(user_id: user)
+      visit current_path
+      expect(page).to have_selector "a[data-method=delete]" 
+    end
     it "has NO BUTTON for edit either destroy if not THE USER" do
       expect(page).to have_no_link "Edit", href: edit_book_path(book3)
       expect(page).to have_no_link "Destroy", href: book_path(book3)
