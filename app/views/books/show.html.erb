@@ -16,5 +16,38 @@
         <td class="col-sm-1"><%= link_to "Destroy", book_path(@book), class: "btn btn-danger", method: :delete, data: { confirm: "You are sure?" } %></td>
       <% end %>
     </table>
+    <% if @book.comments.any? %>
+      <table class="table table-hover comments-table">
+        <thead class="row">
+          <th class="col-sm-3">User</th>
+          <th class="col-sm-7">Comment</th>
+          <th class="col-sm-2"></th>
+        </thead>
+        <tbody class="comment-list">
+          <%= render "comments/comment", book: @book %>
+        </tbody>
+      </table>
+    <% end %>
+    
+    <% if @comment.errors.any? %>
+      <div class="error-explanation">
+        <h3><%= pluralize(@comment.errors.count, "error") %> prevented from being saved</h3>
+        <ul>
+          <% @comment.errors.full_messages.each do |m| %>
+            <li><%= m %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <%= form_with model: @comment, url: book_comments_path(@book, @comment), local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :content, class: "control-label" %>
+        <%= f.text_area :content, class: "form-control" %>
+      </div>
+      <div class="submit-btn">
+        <%= f.submit "Post", class: "btn btn-default" %>
+      </div>
+    <% end %>
   </div>
 </div>
