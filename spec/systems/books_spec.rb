@@ -65,6 +65,14 @@ RSpec.describe "books-page", type: :system do
       expect(page).to have_link "Edit", href: edit_book_path(book)
       expect(page).to have_link "Destroy", href: book_path(book)
     end
+    it "has comment-table" do
+      book.comments.each do |comment|
+        expect(page).to have_link "", href: user_path(comment.user)
+        expect(page).to have_content comment.content
+      end
+    end
+    #it "has button to delete comment" do
+    #end
   end
   context "on edit page" do
     before do

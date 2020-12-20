@@ -1,7 +1,5 @@
 FactoryBot.define do
-  factory :comment do
-    book_id { 1 }
-    user_id { "" }
-    content { "MyText" }
+  factory :comment, class: Comment do
+    content { "Hello world" }
   end
 end
