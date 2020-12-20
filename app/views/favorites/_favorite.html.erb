@@ -1,0 +1,9 @@
+        <% if current_user.favorites.where(book_id: book.id).present? %>
+          <%= link_to book_favorite_path(book),  method: :delete, remote: true do %>
+            <i class="fas fa-star" style="color: orange;"></i>
+          <% end %>
+        <% else %>
+          <%= link_to book_favorite_path(book), method: :post, remote: true do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+        <% end %>
