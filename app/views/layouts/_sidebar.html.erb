@@ -1,6 +1,8 @@
 <h2>User info</h2>
 <div class="user-info-box">
-  <h4>Image</h4>
+  <div class="image-box">
+    <%= attachment_image_tag user, :image, format: "jpg", fallback: "noimage.jpg" %>
+  </div>
   <table class="table">
     <tr><th>name</th><td><%= user.name %></td></tr>
     <tr><th>introduction</th><td><%= user.introduction %></td></tr>

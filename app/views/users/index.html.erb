@@ -4,7 +4,7 @@
     </div>
     <div class="col-sm-8">
         <h2>Users</h2>
-        <table class="table table-hover">
+        <table class="table table-hover users-table">
             <thead class="row">
                 <th class="col-sm-2">image</th>
                 <th class="col-sm-8">name</th>
@@ -13,7 +13,7 @@
             <tbody>
                 <% @users.each do |user| %>
                     <tr>
-                        <td>IMAGE</td>
+                        <td><%= attachment_image_tag user, :image, fallback: "noimage.jpg", class: "image-in-table" %></td>
                         <td><%= user.name %></td>
                         <td><%= link_to "Show", user_path(user) %></td>
                     </tr>

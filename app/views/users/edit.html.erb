@@ -8,10 +8,10 @@
       </div>
       <div class="form-group form-inline">
         <%= f.label :image, class: "control-label" %>
-        <!--attachment-->
+        <%= f.attachment_field :image %>
       </div>
       <div class="form-group form-inline">
-        <%= f.label :introduction, class: "control-label" %>
+        <%= f.label :introduction, class: "control-label" %><br>
         <%= f.text_area :introduction, class: "form-control" %>
       </div>
       <%= f.submit "Update" %>
