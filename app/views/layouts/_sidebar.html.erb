@@ -7,9 +7,14 @@
     <tr><th>name</th><td><%= user.name %></td></tr>
     <tr><th>introduction</th><td><%= user.introduction %></td></tr>
   </table>
-  <% if user == current_user %>
-    <%= link_to "Edit", edit_user_path(user), class: "btn btn-block btn-default" %>
-  <% end %>
+  <div class="edit-btn">
+    <% if user == current_user %>
+      <%= link_to "Edit", edit_user_path(user), class: "btn btn-block btn-default" %>
+    <% end %>
+  </div>
+  <div class="follow-btn">
+    <%= render "relationships/followbtn", user: user %>
+  </div>
 </div>
 <div class="new-book">
   <h2>New book</h2>

@@ -45,10 +45,23 @@ RSpec.describe User, type: :system do
       visit user_path(user2)
       expect(page).to have_no_link "Edit", href: edit_user_path(user2)
     end
+    it "has button to follow for other user" do
+      visit user_path(user2)
+      expect(page).to have_link "Follow", href: user_relationship_path(user2)
+    end
+    it "has button to unfollow other user" do
+      user.active_relationships.create(followed_id: user2.id)
+      visit user_path(user2)
+      expect(page).to have_link "Unfollow", href: user_relationship_path(user2)
+    end
     it "has book-list" do
       user.books.each do |b|
         expect(page).to have_link b.title, href: book_path(b)
       end
+    end
+    it "has button to follow user if it is the other user" do
+      visit user_path(user2)
+      expect(page).to have_link "Follow", href: user_relationship_path(user2)
     end
   end
   context "on Edit page" do

@@ -27,5 +27,17 @@ RSpec.describe User, type: :model do
     it "has many comments" do
       expect(User.reflect_on_association(:coments).macro).to eq :has_many
     end
+    it "has many active_relationships" do
+      expect(User.reflect_on_association(:active_relationships).macro).to eq :has_many
+    end
+    it "has many passive_relationships" do
+      expect(User.reflect_on_association(:passive_relasionships).macro).to eq :has_many
+    end
+    it "has many followers" do
+      expect(User.reflect_on_association(:followers).macro).to eq :has_many
+    end
+    it "has many followings" do
+      expect(User.reflect_on_association(:followings).macro).to eq :has_many
+    end
   end
 end
