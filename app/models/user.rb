@@ -9,5 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   
   attachment :image
-  has_many :favorites
+  
+  has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end

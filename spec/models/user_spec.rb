@@ -24,5 +24,8 @@ RSpec.describe User, type: :model do
     it "has many favorites" do
       expect(User.reflect_on_association(:favorites).macro).to eq :has_many
     end
+    it "has many comments" do
+      expect(User.reflect_on_association(:coments).macro).to eq :has_many
+    end
   end
 end
