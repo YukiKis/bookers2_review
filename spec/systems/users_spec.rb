@@ -54,6 +54,9 @@ RSpec.describe User, type: :system do
       visit user_path(user2)
       expect(page).to have_link "Unfollow", href: user_relationship_path(user2)
     end
+    it "has button to messages page" do
+      expect(page).to have_link "Messages", href: messages_user_path(user)
+    end
     it "has the link for folowers list" do
       expect(page).to have_link "Followers", href: followers_user_path(user)
     end

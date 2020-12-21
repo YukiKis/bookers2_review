@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :passive_relationships, dependent: :destroy, class_name: :Relationship, foreign_key: :followed_id
   has_many :followers, dependent: :destroy, through: :passive_relationships, source: :follower
   has_many :followings, dependent: :destroy, through: :active_relationships, source: :followed
+#  has_many :to_messages, dependent: :destroy, class_name: :Message, foreign_key: :to_user_id
+#  has_many :from_messages, dependent: :destroy, class_name: :Message, foreign_key: :from_user_id
+  has_many :messages, dependent: :destroy
   
   def following?(user)
     self.active_relationships.where(followed_id: user.id).present?
@@ -27,5 +30,13 @@ class User < ApplicationRecord
   
   def unfollow(user)
     self.active_relationships.find_by(followed_id: user.id).destroy
+  end
+  
+  def get_messages(user)
+    (Message.where(from_user_id: self.id, to_user_id: user.id) + Message.where(from_user_id: user.id, to_user_id: self.id)).sort
+  end
+  
+  def have_message?(user)
+    Message.where(from_user_id: self.id, to_user_id: user.id).or(Message.where(from_user_id: user.id, to_user_id: self.id)).present?
   end
 end
