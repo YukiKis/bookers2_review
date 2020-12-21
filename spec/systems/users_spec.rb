@@ -45,10 +45,29 @@ RSpec.describe User, type: :system do
       visit user_path(user2)
       expect(page).to have_no_link "Edit", href: edit_user_path(user2)
     end
+    it "has button to follow for other user" do
+      visit user_path(user2)
+      expect(page).to have_link "Follow", href: user_relationship_path(user2)
+    end
+    it "has button to unfollow other user" do
+      user.active_relationships.create(followed_id: user2.id)
+      visit user_path(user2)
+      expect(page).to have_link "Unfollow", href: user_relationship_path(user2)
+    end
+    it "has the link for folowers list" do
+      expect(page).to have_link "Followers", href: followers_user_path(user)
+    end
+    it "has the link for followings list" do
+      expect(page).to have_link "Followings", href: followings_user_path(use)
+    end
     it "has book-list" do
       user.books.each do |b|
         expect(page).to have_link b.title, href: book_path(b)
       end
+    end
+    it "has button to follow user if it is the other user" do
+      visit user_path(user2)
+      expect(page).to have_link "Follow", href: user_relationship_path(user2)
     end
   end
   context "on Edit page" do
@@ -80,6 +99,46 @@ RSpec.describe User, type: :system do
       fill_in "user[name]", with: ""
       click_button "Update"
       expect(page).to have_content "error"
+    end
+  end
+  
+  context "on follower page" do
+    before do
+      user.follow(user2)
+      visit followers_user_path(user2)
+    end
+    it "has title 'Follower'" do
+      expect(page).to have_content "Follower"
+    end
+    it "has follower list" do
+      # checking with each
+      user2.followers.each do |follower|
+        expect(page).to have_link follower.name, href: user_path(follower)
+        expect(page).to have_content follower.books.count
+      end
+      # checking using actual user
+      expect(page).to have_link user.name, href: user_path(user)
+      expect(page).to have_content user.books.count
+    end
+  end
+  
+  context "on following page" do
+    before do
+      user2.follow(user)
+      visit followings_user_path(user2)
+    end
+    it "has title 'Following'" do
+      expect(page).to have_content "Following"
+    end
+    it "has following list" do
+      # checking with each
+      user2.followings.each do |following| 
+        expect(page).to have_link following.name, href: user_path(following)
+        expect(page).to have_content following.books.count
+      end
+      # checking using actual user
+      expect(page).to have_link user.name, href: user_path(user)
+      expect(page).to have_content user.books.count
     end
   end
 end

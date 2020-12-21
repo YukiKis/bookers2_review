@@ -8,7 +8,13 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations"
   }
-  resources :users, except: :destroy
+  resources :users, except: :destroy do
+    resource :relationship, only: [:create, :destroy]
+    member do
+      get "/followers", to: "users#followers"
+      get "/followings", to: "users#followings"
+    end
+  end
   resources :books do
     resource :favorite, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
