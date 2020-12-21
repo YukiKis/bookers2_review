@@ -6,12 +6,13 @@
   <table class="table">
     <tr><th>name</th><td><%= user.name %></td></tr>
     <tr><th>introduction</th><td><%= user.introduction %></td></tr>
-    <tr><th><%= link_to "Followers", followers_user_path(@user) %></th><td><%= counter(@user.followers.count, "follower") %></td></tr>
-    <tr><th><%= link_to "Followings", followings_user_path(@user) %></th><td><%= counter(@user.followings.count, "following") %></td></tr>
+    <tr><th><%= link_to "Followers", followers_user_path(user) %></th><td><%= counter(user.followers.count, "follower") %></td></tr>
+    <tr><th><%= link_to "Followings", followings_user_path(user) %></th><td><%= counter(user.followings.count, "following") %></td></tr>
   </table>
   <div class="edit-btn">
     <% if user == current_user %>
       <%= link_to "Edit", edit_user_path(user), class: "btn btn-block btn-default" %>
+      <%= link_to "Messages", messages_user_path(user), class: "btn btn-default btn-block" %>
     <% end %>
   </div>
   <div class="follow-btn">
