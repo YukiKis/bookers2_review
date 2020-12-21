@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       delete "/messages/:message_id", to: "messages#destroy"
     end
   end
+  post "/search/users", to: "users#search", as: :users_search
+  post "/search/books", to: "books#search", as: :books_search
   resources :books do
     resource :favorite, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

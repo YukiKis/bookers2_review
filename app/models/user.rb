@@ -20,6 +20,10 @@ class User < ApplicationRecord
 #  has_many :from_messages, dependent: :destroy, class_name: :Message, foreign_key: :from_user_id
   has_many :messages, dependent: :destroy
   
+  scope :search_forward, ->(keyword){ where("name LIKE ?", "#{ keyword }%")}
+  scope :search_back, ->(keyword){ where("name LIKE ?", "%#{ keyword }")}
+  scope :search_all, ->(keyword){ where("name LIKE ?", "%#{ keyword }%")}
+  
   def following?(user)
     self.active_relationships.where(followed_id: user.id).present?
   end
