@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       get "/messages/:with_user_id", to: "messages#show", as: :message
       get "/messages", to: "messages#index"
       post "/messages/:with_user_id", to: "messages#create"
-      delete "/messages/:with_user_id/:message_id", to: "messages#destroy"
+      delete "/messages/:message_id", to: "messages#destroy"
     end
   end
   resources :books do

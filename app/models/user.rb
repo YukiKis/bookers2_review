@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
   
   def get_messages(user)
-    (Message.where(from_user_id: self.id, to_user_id: user.id) + Message.where(from_user_id: user.id, to_user_id: self.id)).sort
+    (Message.where(from_user_id: self.id, to_user_id: user.id) + Message.where(from_user_id: user.id, to_user_id: self.id)).sort.reverse
   end
   
   def have_message?(user)

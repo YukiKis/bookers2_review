@@ -34,4 +34,44 @@ RSpec.describe "messages-page", type: :system do
       expect(page).to have_link "See More", href: message_user_path(user, user2)
     end
   end
+  
+  context "on show page" do
+    before do
+      visit message_user_path(user, user2)
+    end
+    it "has user_name" do
+      expect(page).to have_content user2.name
+    end
+    it "has message list" do
+      messages = user.get_messages(usre2)
+      messages.each do |m|
+        expect(page).to have_content m
+      end
+    end
+    it "has message-form" do
+      expect(page).to have_field "message[message]"
+      expect(page).to have_button "Post"
+    end
+    it "succeeds to send a message" do
+      fill_in "message[message]", with: "Hello"
+      click_button "Post"
+      expect(page).to have_content "Hello"
+    end
+    it "succeeds to get a message" do
+      fill_in "message[message]", with: "Hello"
+      click_button "Post"
+      expect(page).to have_content "Hello"
+      click_link "Logout"
+      visit new_user_session_path
+      fill_in "user[name]", with: user2.name
+      fill_in "user[password]", with: user2.password
+      click_button "Login"
+      expect(page).to have_content "successfully"
+      visit message_user_path(user2, user)
+      expect(page).to have_content "Hello"
+    end
+    it "has back button" do
+      expect(page).to have_link "Back", href: messages_user_path(user)
+    end
+  end
 end
