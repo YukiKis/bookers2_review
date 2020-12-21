@@ -6,6 +6,8 @@
   <table class="table">
     <tr><th>name</th><td><%= user.name %></td></tr>
     <tr><th>introduction</th><td><%= user.introduction %></td></tr>
+    <tr><th><%= link_to "Followers", followers_user_path(@user) %></th><td><%= counter(@user.followers.count, "follower") %></td></tr>
+    <tr><th><%= link_to "Followings", followings_user_path(@user) %></th><td><%= counter(@user.followings.count, "following") %></td></tr>
   </table>
   <div class="edit-btn">
     <% if user == current_user %>

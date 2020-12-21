@@ -28,6 +28,18 @@ class UsersController < ApplicationController
     end
   end
   
+  def followers
+    @user = User.find(params[:id])
+    @title = "Follower".pluralize(@user.followers.count)
+    @resources = @user.followers
+  end
+  
+  def followings
+    @user = User.find(params[:id])
+    @title = "Following".pluralize(@user.followings.count)
+    @resources = @user.followings
+  end
+  
   private
     def user_params
       params.require(:user).permit(:name, :introduction)

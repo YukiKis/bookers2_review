@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   }
   resources :users, except: :destroy do
     resource :relationship, only: [:create, :destroy]
+    member do
+      get "/followers", to: "users#followers"
+      get "/followings", to: "users#followings"
+    end
   end
   resources :books do
     resource :favorite, only: [:create, :destroy]
