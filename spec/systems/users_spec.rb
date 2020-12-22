@@ -24,6 +24,12 @@ RSpec.describe User, type: :system do
       expect(page).to have_field "book[title]"
       expect(page).to have_field "book[opinion]"
     end
+    it "has search_form" do
+      expect(page).to have_select("search[how]", options: ["前方検索", "後方検索", "全検索"])
+      expect(page).to have_field "search[keyword]"
+      expect(page).to have_button "Search"
+    end
+    
     it "has lists of users" do
       User.all.each do |u|
         expect(page).to have_link u.name, href: user_path(u)
