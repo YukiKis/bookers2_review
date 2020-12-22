@@ -4,6 +4,15 @@
   </div>
   <div class="col-sm-8">
     <h2>Books</h2>
+    <%= form_with scope: :search, url: books_search_path, local: true do |f| %>
+      <div class="form-group form-inline">
+        <%= f.label "検索方法", for: "search_how", class: "control-label" %>
+        <%= f.select :how, ["前方検索", "後方検索", "全検索"], { include_blank: "選択して下さい" }, { class: "form-control" } %>
+        <%= f.label :keyword, class: "control-label" %>
+        <%= f.text_field :keyword, class: "form-control" %>
+        <%= f.submit "Search", class: "btn btn-default" %>
+      </div>
+    <% end %>
     <table class="table table-hover books-table">
       <thead class="row">
         <th class="col-sm-2"></th>

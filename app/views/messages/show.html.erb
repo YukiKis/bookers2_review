@@ -18,7 +18,7 @@
             <%= m.message %>
             <%= m.created_at.strftime("%Y/%m/%d %H:%M") %>
             <%= attachment_image_tag m.from_user, :image, :fill, 30, 30, fallback: "noimage.jpg", size: "30x30" %>
-            <%= link_to "Delete", messages_user_path(@user, m), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            <%#= link_to "Delete", messages_user_path(@user, m), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
           </p>
         <% else %>
           <p class="text-left">
