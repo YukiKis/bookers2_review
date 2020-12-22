@@ -16,3 +16,9 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+$(document).on("turbolinks:load", function(){
+    $("#user_postcode").jpostal({
+      postcode: ["#user_postcode"], 
+      address: { "#user_address": "%3%4%5" }
+    }); 
+})
